@@ -16,7 +16,9 @@ on:
             azure-aks-rg:
               required: true
               type: string    
-              
+        secrets:
+          azure_github_secret:
+           required: true     
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
@@ -25,6 +27,7 @@ jobs:
       uses: Azure/login@v2.2.0
       with:
        client-id: ${{ inputs.azure-client-id }}
+       client-secret: ${{ secrets.azure_github_secret }}
        tenant-id: ${{ inputs.azure-tenant-id }}
        subscription-id: ${{ inputs.azure-sub-id }}
 
