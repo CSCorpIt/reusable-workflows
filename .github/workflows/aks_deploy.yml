@@ -2,23 +2,23 @@ on:
     workflow_call:
         inputs:
             azure-tenant-id:
-              required: true
+              required: false
               type: string
             azure-sub-id:
-              required: true
+              required: false
               type: string
             azure-client-id:
-              required: true
+              required: false
               type: string
             azure-aks:
-              required: true
+              required: false
               type: string
             azure-aks-rg:
-              required: true
+              required: false
               type: string    
         secrets:
           azure_github_secret:
-           required: true     
+           required: false     
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
