@@ -26,10 +26,7 @@ jobs:
     - name: Azure Login
       uses: Azure/login@v2.2.0
       with:
-       client-id: ${{ inputs.azure-client-id }}
-       client-secret: ${{ secrets.azure_github_secret }}
-       tenant-id: ${{ inputs.azure-tenant-id }}
-       subscription-id: ${{ inputs.azure-sub-id }}
+       creds: ${{ secrets.azure_github_secret }}
 
     - name : Azure List Pods
       uses: Azure/cli@v2.1.0
