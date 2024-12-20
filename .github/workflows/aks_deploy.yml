@@ -1,10 +1,35 @@
 on:
     workflow_call:
         inputs:
-            config-path:
+            azure-tenant-id:
               required: true
               type: string
+            azure-sub-id:
+              required: true
+              type: string
+            azure-client-id:
+              required: true
+              type: string
+            azure-aks:
+              required: true
+              type: string
+            azure-aks-rg:
+              required: true
+              type: string    
+              
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
-    steps:
+    steps:            
+    - name: Azure Login
+      uses: Azure/login@v2.2.0
+      with:
+       client-id: ${{ inputs.azure-client-id }}
+       tenant-id: ${{ inputs.azure-tenant-id }}
+       subscription-id: ${{ inputs.azure-sub-id }}
+
+    - name : Azure List Pods
+      uses: Azure/cli@v2.1.0
+      with:
+       inlineScript:  |
+          az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }} --name ${{ inputs.azure-aks }} --overwrite-existing
