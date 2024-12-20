@@ -26,7 +26,7 @@ jobs:
     - name: Azure Login
       uses: Azure/login@v2.2.0
       with:
-       creds: ${{ secrets.azure_github_secret }}
+       creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name : Azure List Pods
       uses: Azure/cli@v2.1.0
