@@ -18,14 +18,16 @@ on:
               type: string    
         secrets:
           azure_github_secret:
-           required: true  
-permissions:
-  id-token: write
-  contents: read           
+           required: true        
 
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
+     
+     permissions:
+       id-token: write
+       contents: read    
+    
     steps:            
     - name: Azure Login
       uses: Azure/login@v2.2.0
