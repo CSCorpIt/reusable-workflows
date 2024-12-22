@@ -17,9 +17,12 @@ on:
               required: false
               type: string    
         secrets:
-          azure_github_secret:
+          azureClientId::
            required: true        
-
+          azureSudId‎:
+           required: true 
+          azureTenantId:
+           required: true  
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
