@@ -32,9 +32,9 @@ jobs:
     - name: Azure Login
       uses: Azure/login@v2.2.0
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        client-id: ${{ secrets.azureClientId }}
+        tenant-id: ${{ secrets.azureTenantId }}
+        subscription-id: ${{ secrets.azureSudId }}
 
     - name : Azure List Pods
       uses: Azure/cli@v2.1.0
