@@ -1,15 +1,6 @@
 on:
     workflow_call:
         inputs:
-            azure-tenant-id:
-              required: false
-              type: string
-            azure-sub-id:
-              required: false
-              type: string
-            azure-client-id:
-              required: false
-              type: string
             azure-aks:
               required: false
               type: string
@@ -17,9 +8,9 @@ on:
               required: false
               type: string    
         secrets:
-          azureClientId::
+          azureClientId:
            required: true        
-          azureSudId‎:
+          azureSubId‎:
            required: true 
           azureTenantId:
            required: true  
@@ -37,7 +28,7 @@ jobs:
       with:
         client-id: ${{ secrets.azureClientId }}
         tenant-id: ${{ secrets.azureTenantId }}
-        subscription-id: ${{ secrets.azureSudId }}
+        subscription-id: ${{ secrets.azureSubId }}
 
     - name : Azure List Pods
       uses: Azure/cli@v2.1.0
