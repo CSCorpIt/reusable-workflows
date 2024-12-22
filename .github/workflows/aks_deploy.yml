@@ -8,12 +8,12 @@ on:
           required: false
           type: string    
         secrets:
-         azureClientId:
-          required: false        
-         azureSubId‎:
-          required: false 
-         azureTenantId:
-          required: false  
+         AZURE_CLIENT_ID:
+          required: true        
+         AZURE_SUB_ID‎:
+          required: true 
+         AZURE_TENANT_ID:
+          required: true  
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
