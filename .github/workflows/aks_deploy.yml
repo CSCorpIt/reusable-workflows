@@ -1,19 +1,19 @@
 on:
     workflow_call:
         inputs:
-            azure-aks:
-              required: false
-              type: string
-            azure-aks-rg:
-              required: false
-              type: string    
+         azure-aks:
+          required: false
+          type: string
+         azure-aks-rg:
+          required: false
+          type: string    
         secrets:
-          azureClientId:
-           required: true        
-          azureSubId‎:
-           required: true 
-          azureTenantId:
-           required: true  
+         azureClientId:
+          required: false        
+         azureSubId‎:
+          required: false 
+         azureTenantId:
+          required: false  
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
