@@ -7,7 +7,7 @@
       azure-aks-rg:
         required: false
         type: string
-      app-helm-path:
+      helm-repo-path:
         required: false
         type: string  
     secrets:
@@ -37,6 +37,19 @@ jobs:
             az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }}
             --name ${{ inputs.azure-aks }} --overwrite-existing
 
+      - name: Checkout External Repository with Helm Chart
+        uses: actions/checkout@v4
+        with:
+         repository: ${{inputs.helm-repo-path}}
+         ref: main
+         
+      - name: Deploy Helm Chart
+        run: |
+         helm upgrade --install backstage ./helm-charts \
+         --namespace backstage \
+         --create-namespace \
+         --values ./helm-charts/values.yaml
+
       - name: Azure List Pods
         uses: Azure/cli@v2.1.0
         with:
@@ -44,3 +57,4 @@ jobs:
             az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }}
             --name ${{ inputs.azure-aks }} --overwrite-existing     
             
+     
