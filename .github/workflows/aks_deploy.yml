@@ -46,7 +46,6 @@ jobs:
       - name: Deploy Helm Chart
         run: |
          ls -ltr
-         az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }} --name ${{ inputs.azure-aks }} --overwrite-existing
          helm upgrade --install backstage ./helm-charts \
          --namespace backstage \
          --create-namespace \
