@@ -7,6 +7,9 @@
       azure-aks-rg:
         required: false
         type: string
+      app-helm-path:
+        required: false
+        type: string  
     secrets:
       AZURE_CLIENT_ID:
         required: true
@@ -33,3 +36,11 @@ jobs:
           inlineScript: >
             az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }}
             --name ${{ inputs.azure-aks }} --overwrite-existing
+
+      - name: Azure List Pods
+        uses: Azure/cli@v2.1.0
+        with:
+          inlineScript: >
+            az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }}
+            --name ${{ inputs.azure-aks }} --overwrite-existing     
+            
