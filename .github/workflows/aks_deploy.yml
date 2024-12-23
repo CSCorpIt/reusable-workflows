@@ -1,37 +1,35 @@
-on:
-    workflow_call:
-        inputs:
-         azure-aks:
-          required: false
-          type: string
-         azure-aks-rg:
-          required: false
-          type: string    
-        secrets:
-         AZURE_CLIENT_ID:
-          required: true        
-         AZURE_SUB_ID‎:
-          required: true 
-         AZURE_TENANT_ID:
-          required: true  
+'on':
+  workflow_call:
+    inputs:
+      azure-aks:
+        required: false
+        type: string
+      azure-aks-rg:
+        required: false
+        type: string
+    secrets:
+      AZURE_CLIENT_ID:
+        required: true
+      AZURE_SUB_ID:
+        required: true
+      AZURE_TENANT_ID:
+        required: true
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
-     
     permissions:
       id-token: write
-      contents: read    
-    
-    steps:            
-    - name: Azure Login
-      uses: Azure/login@v2.2.0
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUB_ID }}
-
-    - name : Azure List Pods
-      uses: Azure/cli@v2.1.0
-      with:
-       inlineScript:  |
-          az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }} --name ${{ inputs.azure-aks }} --overwrite-existing
+      contents: read
+    steps:
+      - name: Azure Login
+        uses: Azure/login@v2.2.0
+        with:
+          client-id: '${{ secrets.AZURE_CLIENT_ID }}'
+          tenant-id: '${{ secrets.AZURE_TENANT_ID }}'
+          subscription-id: '${{ secrets.AZURE_SUB_ID }}'
+      - name: Azure List Pods
+        uses: Azure/cli@v2.1.0
+        with:
+          inlineScript: >
+            az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }}
+            --name ${{ inputs.azure-aks }} --overwrite-existing
