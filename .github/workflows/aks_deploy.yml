@@ -66,19 +66,5 @@ jobs:
          repository: ${{inputs.helm-repo-path}}
          ref: main   
          
-      - name: Deploy Helm Chart
-        run: |
-         ls -ltr
-         cat ~/.kube/config
-         kubectl cluster-info
-         helm upgrade --install backstage ./helm-charts \
-         --values ./helm-charts/values.yaml
 
-      - name: Azure List Pods
-        uses: Azure/cli@v2.1.0
-        with:
-          inlineScript: >
-            az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }}
-            --name ${{ inputs.azure-aks }} --overwrite-existing     
-            
      
