@@ -51,7 +51,7 @@ jobs:
              kubectl config current-context
              kubectl get nodes
     
-             helm upgrade --install backstage ./helm-charts \
+             helm upgrade --install backstage helm-charts \
              --namespace backstage \
              --create-namespace \
              --values ./helm-charts/values.yaml
