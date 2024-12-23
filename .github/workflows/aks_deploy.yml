@@ -53,6 +53,8 @@ jobs:
       - name: Deploy Helm Chart
         run: |
          ls -ltr
+         cat ~/.kube/config
+         kubectl cluster-info
          helm upgrade --install backstage ./helm-charts \
          --values ./helm-charts/values.yaml
 
