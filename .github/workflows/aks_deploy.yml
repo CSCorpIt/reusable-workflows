@@ -37,7 +37,12 @@ jobs:
           tenant-id: '${{ secrets.AZURE_TENANT_ID }}'
           subscription-id: '${{ secrets.AZURE_SUB_ID }}'
 
-
+      - name: Checkout External Repository with Helm Chart
+        uses: actions/checkout@v4
+        with:
+         repository: ${{inputs.helm-repo-path}}
+         ref: main   
+      
       - name: AKS Credentials & Helm Deployment
         run: |
              az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }} --name ${{ inputs.azure-aks }} --overwrite-existing
@@ -60,11 +65,7 @@ jobs:
             az aks get-credentials --resource-group ${{ inputs.azure-aks-rg }}
             --name ${{ inputs.azure-aks }} --overwrite-existing
 
-      - name: Checkout External Repository with Helm Chart
-        uses: actions/checkout@v4
-        with:
-         repository: ${{inputs.helm-repo-path}}
-         ref: main   
+      
          
 
      
