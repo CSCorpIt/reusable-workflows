@@ -53,8 +53,6 @@ jobs:
         run: |
          ls -ltr
          helm upgrade --install backstage ./helm-charts \
-         --namespace backstage \
-         --create-namespace \
          --values ./helm-charts/values.yaml
 
       - name: Azure List Pods
